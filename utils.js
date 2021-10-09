@@ -16,7 +16,11 @@ function exitWithError(message) {
 }
 
 function exitSuccess() {
-  console.log(green('success'));
+  console.log(getSuccessMessage());
+}
+
+function getSuccessMessage() {
+  return green('success');
 }
 
 function run(program, ...args) {
@@ -32,6 +36,7 @@ module.exports = exports = {
   green,
   run,
   handleProcessError,
+  getSuccessMessage,
   exitWithError,
   exitSuccess,
 };

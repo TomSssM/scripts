@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { pipeline } = require('stream/promises');
-const { run, exitWithError } = require('./utils');
+const { run, exitWithError, getSuccessMessage } = require('./utils');
 
 const argv = process.argv.slice(2);
 
@@ -36,12 +36,12 @@ run(async () => {
   if (notSyncedFiles) {
     throw new Error(
       `files in checksum database missing in the file system: \n${
-        filesList
+        notSyncedFiles
       }`,
     );
   }
 
-  console.log(syncedFiles);
+  console.log(syncedFiles || getSuccessMessage());
 });
 
 async function readFilesDb(filesDbPath) {
@@ -52,13 +52,15 @@ function readChecksumDb(checksumDbPath) {
   return createReader(checksumDbPath)(checksumToFilename);
 }
 
+const CHECKSUM_SEPARATOR = '  ';
+
 /**
  * @param {string} checksumLine
  * @returns {string}
  */
 function checksumToFilename(checksumLine) {
-  const [checksum, ...nameParts] = checksumLine.split(' ');
-  const fileName = nameParts.join(' ');
+  const [checksum, ...nameParts] = checksumLine.split(CHECKSUM_SEPARATOR);
+  const fileName = nameParts.join(CHECKSUM_SEPARATOR);
 
   if (fileName.length === 0) {
     throw new Error(

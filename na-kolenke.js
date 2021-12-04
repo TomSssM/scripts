@@ -1,6 +1,5 @@
-const fs = require('fs');
-const { pipeline } = require('stream/promises');
 const { run, exitWithError, getSuccessMessage } = require('./utils');
+const { readChecksumDb, readFilesDb } = require('./utils/checksum');
 
 const argv = process.argv.slice(2);
 
@@ -43,80 +42,3 @@ run(async () => {
 
   console.log(syncedFiles || getSuccessMessage());
 });
-
-async function readFilesDb(filesDbPath) {
-  return createReader(filesDbPath)(v => v);
-}
-
-function readChecksumDb(checksumDbPath) {
-  return createReader(checksumDbPath)(checksumToFilename);
-}
-
-const CHECKSUM_SEPARATOR = '  ';
-
-/**
- * @param {string} checksumLine
- * @returns {string}
- */
-function checksumToFilename(checksumLine) {
-  const [checksum, ...nameParts] = checksumLine.split(CHECKSUM_SEPARATOR);
-  const fileName = nameParts.join(CHECKSUM_SEPARATOR);
-
-  if (fileName.length === 0) {
-    throw new Error(
-      `empty file at checksum "${checksum ?? '<empty>'}"`,
-    );
-  }
-
-  return fileName;
-}
-
-function createReader(filePath) {
-  return async function(mapper) {
-    const set = new Set();
-    const read = fs.createReadStream(filePath, {
-      encoding: 'utf8',
-    });
-
-    await pipeline(
-      read,
-      serialProcess,
-      applyMapper(mapper),
-      addToSet(set),
-    );
-
-    return set;
-  }
-}
-
-async function* serialProcess(read) {
-  let last = '';
-
-  for await (const chunk of read) {
-    last += chunk;
-
-    const lines = last.split('\n');
-
-    last = lines.pop();
-
-    yield* lines;
-  }
-
-  if (last.length > 0) yield last;
-}
-
-function applyMapper(mapper) {
-  return async function* (read) {
-    for await (const line of read) {
-      yield mapper(line);
-    }
-  }
-}
-
-function addToSet(set) {
-  return async function(read) {
-    for await (const file of read) {
-      set.add(file);
-    }
-  };
-}

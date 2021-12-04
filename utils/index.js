@@ -11,20 +11,32 @@ function handleProcessError(error) {
 }
 
 function exitWithError(message) {
-  console.error(`${red('error')} ${message}`);
+  const msg = 'error';
+  console.error(`${isTTY(true) ? red(msg) : msg} ${message}`);
   process.exit(1);
 }
 
 function exitSuccess() {
   console.log(getSuccessMessage());
+  process.exit(0);
 }
 
 function getSuccessMessage() {
-  return green('success');
+  const msg = 'success';
+  return isTTY() ? green(msg) : msg;
 }
 
 function run(program, ...args) {
   program(...args).catch(handleProcessError);
+}
+
+/**
+ * @param {boolean} checkStderr
+ */
+function isTTY(checkStderr) {
+  return Boolean(
+    checkStderr ? process.stderr.isTTY : process.stdout.isTTY
+  );
 }
 
 module.exports = exports = {
@@ -37,6 +49,7 @@ module.exports = exports = {
   run,
   handleProcessError,
   getSuccessMessage,
+  isTTY,
   exitWithError,
   exitSuccess,
 };

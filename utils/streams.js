@@ -4,6 +4,7 @@ const { addToSet } = require('./set');
 
 /**
  * @param {string} filePath
+ * @returns {(mapper: (value: string) => string) => Promise<Set<string>>}
  */
 function createReader(filePath) {
   return async function(mapper) {

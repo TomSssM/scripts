@@ -1,10 +1,18 @@
 const { createReader } = require('./streams');
 
+/**
+ * @param {string} filesDbPath
+ * @returns {Promise<Set<string>>}
+ */
 async function readFilesDb(filesDbPath) {
   return createReader(filesDbPath)(v => v);
 }
 
-function readChecksumDb(checksumDbPath) {
+/**
+ * @param {string} filesDbPath
+ * @returns {Promise<Set<string>>}
+ */
+async function readChecksumDb(checksumDbPath) {
   return createReader(checksumDbPath)(checksumToFilename);
 }
 
@@ -35,9 +43,18 @@ function checksumToFilename(checksumLine) {
   return parseChecksum(checksumLine)[0];
 }
 
+/**
+ * @param {[Set<string>, Set<string>]}
+ * @returns {[string, string]}
+ */
+function formatFilesDbs([syncedDb, notSyncedDb]) {
+  return [syncedDb, notSyncedDb].map((db) => Array.from(db).join('\n'));
+}
+
 module.exports = exports = {
   CHECKSUM_SEPARATOR,
   readFilesDb,
   readChecksumDb,
   checksumToFilename,
+  formatFilesDbs,
 };

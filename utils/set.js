@@ -1,5 +1,5 @@
 /**
- * @param {Set} set
+ * @param {Set<string>} set
  */
 function addToSet(set) {
   return async function(read) {
@@ -11,9 +11,9 @@ function addToSet(set) {
 
 /**
  * return values of set1 missing from set2
- * @param {Set} set1
- * @param {Set} set2
- * @returns {Set}
+ * @param {Set<string>} set1
+ * @param {Set<string>} set2
+ * @returns {Set<string>}
  */
 function diff(set1, set2) {
   const diffSet = new Set();
@@ -28,12 +28,12 @@ function diff(set1, set2) {
 }
 
 /**
- * checks what values from set1 are missing from set2 and
+ * checks what values of set1 are missing from set2 and
  * additionally returns values of set2 missing from set1
  *
- * @param {Set} set1
- * @param {Set} set2
- * @returns {[Set, Set]}
+ * @param {Set<string>} set1
+ * @param {Set<string>} set2
+ * @returns {[Set<string>, Set<string>]}
  */
 function sync(set1, set2) {
   const diff1 = diff(set1, set2);

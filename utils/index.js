@@ -1,10 +1,12 @@
 const ESCAPE = '\x1b';
 const RED = `${ESCAPE}[31m`;
 const GREEN = `${ESCAPE}[32m`;
+const BLUE = `${ESCAPE}[34m`;
 const RESET = `${ESCAPE}[0m`;
 
 const red = (value) => [RED, value, RESET].join('');
 const green = (value) => [GREEN, value, RESET].join('');
+const blue = (value) => [BLUE, value, RESET].join('');
 
 function handleProcessError(error) {
   exitWithError(error.message);
@@ -21,9 +23,9 @@ function exitSuccess() {
   process.exit(0);
 }
 
-function getSuccessMessage() {
+function getSuccessMessage(noColor = false) {
   const msg = 'success';
-  return isTTY() ? green(msg) : msg;
+  return isTTY() && !noColor ? green(msg) : msg;
 }
 
 function run(program, ...args) {
@@ -46,6 +48,7 @@ module.exports = exports = {
   RESET,
   red,
   green,
+  blue,
   run,
   handleProcessError,
   getSuccessMessage,

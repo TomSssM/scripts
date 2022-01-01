@@ -104,6 +104,8 @@ module.exports = exports = {
   readChecksumDbToSet,
   readChecksumDbToMap,
   checksumToFilename,
+  serializeChecksum,
+  serializeChecksumMapDb,
   formatFilesDbs,
   formatChecksumDbs,
 };

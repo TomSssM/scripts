@@ -28,9 +28,7 @@ function diff(map1, map2) {
 
         if (!v2 && v1.length) {
             diffMap.set(k, v1);
-        }
-
-        if (v1.length && v2.length) {
+        } else if (v1.length && v2.length) {
             const valuesDiff = Array.from(setDiff(
                 new Set(v1),
                 new Set(v2)

@@ -1,14 +1,14 @@
 const fs = require('fs');
 const { pipeline } = require('stream/promises');
 const { addToSet } = require('./set');
+const { addToMap } = require('./map');
 
 /**
- * @param {string} filePath
- * @returns {(mapper: (value: string) => string) => Promise<Set<string>>}
+ * @param {Array<(readable) => AsyncGenerator<string, void, undefined>>} mapGenerators
+ * @returns {(filePath: string) => Promise<void>}
  */
-function createReader(filePath) {
-  return async function(mapper) {
-    const set = new Set();
+function createReader(...mapGenerators) {
+  return async function(filePath) {
     const read = fs.createReadStream(filePath, {
       encoding: 'utf8',
     });
@@ -16,11 +16,42 @@ function createReader(filePath) {
     await pipeline(
       read,
       serialProcess,
-      applyMapper(mapper),
-      addToSet(set),
+      ...mapGenerators
     );
+  }
+}
+
+/**
+ * @param {string} filePath
+ * @returns {(mapper: (value: string) => string) => Promise<Set<string>>}
+ */
+function createSetReader(filePath) {
+  return async function(mapper) {
+    const set = new Set();
+
+    await createReader(
+      applyMapper(mapper),
+      addToSet(set)
+    )(filePath);
 
     return set;
+  }
+}
+
+/**
+ * @param {string} filePath
+ * @returns {(mapper: (value: string) => [key: string, value: string]) => Promise<Map<string, string[]>>}
+ */
+function createMapReader(filePath) {
+  return async function(mapper) {
+    const map = new Map();
+
+    await createReader(
+      applyMapper(mapper),
+      addToMap(map)
+    )(filePath);
+
+    return map;
   }
 }
 
@@ -41,7 +72,7 @@ async function* serialProcess(read) {
 }
 
 /**
- * @param {(value: string) => string} mapper
+ * @param {<V extends string | string[]>(value: string) => V} mapper
  */
 function applyMapper(mapper) {
   return async function* (read) {
@@ -52,7 +83,8 @@ function applyMapper(mapper) {
 }
 
 module.exports = exports = {
-  createReader,
+  createSetReader,
+  createMapReader,
   serialProcess,
   applyMapper,
 };

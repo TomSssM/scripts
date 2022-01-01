@@ -1,5 +1,5 @@
 const { run, exitWithError, getSuccessMessage } = require('./utils');
-const { readChecksumDb, readFilesDb } = require('./utils/checksum');
+const { readChecksumDbToSet, readFilesDb } = require('./utils/checksum');
 
 const argv = process.argv.slice(2);
 
@@ -16,7 +16,7 @@ if (!checksumPath || !filesPath) {
 run(async () => {
   const filesDb = await readFilesDb(filesPath);
   const files = filesDb.values();
-  const checksumDb = await readChecksumDb(checksumPath);
+  const checksumDb = await readChecksumDbToSet(checksumPath);
   const newFiles = [];
 
   for (const file of files) {

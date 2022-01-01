@@ -1,26 +1,34 @@
-const { createReader } = require('./streams');
+const { createSetReader, createMapReader } = require('./streams');
 
 /**
  * @param {string} filesDbPath
  * @returns {Promise<Set<string>>}
  */
 async function readFilesDb(filesDbPath) {
-  return createReader(filesDbPath)(v => v);
+  return createSetReader(filesDbPath)(v => v);
 }
 
 /**
- * @param {string} filesDbPath
+ * @param {string} checksumDbPath
  * @returns {Promise<Set<string>>}
  */
-async function readChecksumDb(checksumDbPath) {
-  return createReader(checksumDbPath)(checksumToFilename);
+async function readChecksumDbToSet(checksumDbPath) {
+  return createSetReader(checksumDbPath)(checksumToFilename);
+}
+
+/**
+ * @param {string} checksumDbPath
+ * @returns {Promise<Map<string, string[]>>}
+ */
+async function readChecksumDbToMap(checksumDbPath) {
+  return createMapReader(checksumDbPath)(parseChecksum);
 }
 
 const CHECKSUM_SEPARATOR = '  ';
 
 /**
  * @param {string} checksumLine
- * @returns {[string, string]}
+ * @returns {[checksum: string, fileName: string]}
  */
 function parseChecksum(checksumLine) {
   const [checksum = null, ...nameParts] = checksumLine.split(CHECKSUM_SEPARATOR);
@@ -32,7 +40,22 @@ function parseChecksum(checksumLine) {
     );
   }
 
-  return [fileName, checksum || null];
+  if (!checksum) {
+    throw new Error(
+      `empty checksum at file name "${fileName || '<empty>'}"`,
+    );
+  }
+
+  return [checksum || null, fileName];
+}
+
+/**
+ * @param {string} checksum
+ * @param {string} fileName
+ * @returns {string}
+ */
+function serializeChecksum(checksum, fileName) {
+  return [checksum, fileName].join(CHECKSUM_SEPARATOR);
 }
 
 /**
@@ -40,7 +63,7 @@ function parseChecksum(checksumLine) {
  * @returns {string}
  */
 function checksumToFilename(checksumLine) {
-  return parseChecksum(checksumLine)[0];
+  return parseChecksum(checksumLine)[1];
 }
 
 /**
@@ -51,10 +74,36 @@ function formatFilesDbs([syncedDb, notSyncedDb]) {
   return [syncedDb, notSyncedDb].map((db) => Array.from(db).join('\n'));
 }
 
+/**
+ * @param {Map<string, string[]>} db
+ */
+function serializeChecksumMapDb(db) {
+  const out = [];
+
+  for (const [checksum, files] of db.entries()) {
+    out.push(...files.map(
+      (file) => serializeChecksum(checksum, file)
+    ));
+  }
+
+  return out.join('\n');
+}
+
+/**
+ * @param {[Map<string, string[]>, Map<string, string[]>]}
+ * @returns {[string, string]}
+ */
+function formatChecksumDbs([syncedDb, notSyncedDb]) {
+  return [syncedDb, notSyncedDb].map((db) => serializeChecksumMapDb(db));
+}
+
 module.exports = exports = {
   CHECKSUM_SEPARATOR,
   readFilesDb,
-  readChecksumDb,
+  parseChecksum,
+  readChecksumDbToSet,
+  readChecksumDbToMap,
   checksumToFilename,
   formatFilesDbs,
+  formatChecksumDbs,
 };

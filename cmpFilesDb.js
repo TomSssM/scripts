@@ -37,13 +37,14 @@ if (fromArg === -1 || inArg === -1) {
 }
 
 run(async () => {
-  const inDb = await readFilesDb(inValue);
   const fromDb = await readFilesDb(fromValue);
-  const [syncedFiles, notSyncedFiles] = formatFilesDbs(sync(inDb, fromDb));
+  const inDb = await readFilesDb(inValue);
+
+  const [syncedFiles, notSyncedFiles] = formatFilesDbs(sync(fromDb, inDb));
 
   if (notSyncedFiles) {
     throw new Error(`
-      files in the source (--from) database missing from the input (--in) database:
+      files in the input (--in) database missing from the source (--from) database:
 
       ${notSyncedFiles}
     `);

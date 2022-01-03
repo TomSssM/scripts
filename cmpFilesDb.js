@@ -8,6 +8,7 @@ const argv = process.argv.slice(2);
 const fromArg = argv.indexOf('--from'); // Are checksums from --from ...
 const inArg = argv.indexOf('--in');     // ... present in --in ?
 const outArg = argv.indexOf('--out');
+const lax = argv.includes('--lax');
 
 /**
  * --from
@@ -43,11 +44,15 @@ run(async () => {
   const [syncedFiles, notSyncedFiles] = formatFilesDbs(sync(fromDb, inDb));
 
   if (notSyncedFiles) {
-    throw new Error(`
+    const msg = `
       files in the input (--in) database missing from the source (--from) database:
 
-      ${notSyncedFiles}
-    `);
+      ${lax ? notSyncedFiles.split('\n').length : notSyncedFiles}
+    `;
+
+    if (lax) {
+      console.error(msg);
+    } else throw new Error(msg);
   }
 
   if (outValue) {

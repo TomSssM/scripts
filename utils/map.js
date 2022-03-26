@@ -18,11 +18,16 @@ function addToMap(map) {
  * return values of map1 missing from map2
  * @param {Map<string, string[]>} map1
  * @param {Map<string, string[]>} map2
- * @returns {[diffMap: Map<string, string[]>, correspondsMap: Map<string, string[]>]}
+ * @returns {[diffMap: Map<string, string[]>, correspondsMap: Map<string, string[]>, warnings: string[]]}
  */
 function diff(map1, map2) {
   const diffMap = new Map();
   const correspondsMap = new Map();
+  const warnings = [];
+
+  if (map2.size > map1.size) {
+    warnings.push('input database has more values than source database, therefore DIFF may be incomplete');
+  }
 
   const setCorresponds = (file1, file2) => {
     if (file1 === file2) return;
@@ -80,7 +85,7 @@ function diff(map1, map2) {
     }
   }
 
-  return [diffMap, correspondsMap];
+  return [diffMap, correspondsMap, warnings];
 }
 
 /**

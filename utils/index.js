@@ -2,11 +2,13 @@ const ESCAPE = '\x1b';
 const RED = `${ESCAPE}[31m`;
 const GREEN = `${ESCAPE}[32m`;
 const BLUE = `${ESCAPE}[34m`;
+const YELLOW = `${ESCAPE}[33m`;
 const RESET = `${ESCAPE}[0m`;
 
 const red = (value) => [RED, value, RESET].join('');
 const green = (value) => [GREEN, value, RESET].join('');
 const blue = (value) => [BLUE, value, RESET].join('');
+const yellow = (value) => [YELLOW, value, RESET].join('');
 
 function handleProcessError(error) {
   exitWithError(error.message);
@@ -41,6 +43,23 @@ function isTTY(checkStderr) {
   );
 }
 
+/**
+ * @param {string[]} warnings
+ */
+function printWarnings(warnings, pad = true) {
+  if (!warnings.length) return;
+
+  if (pad) console.log();
+
+  warnings.forEach((warning) => {
+    if (warning && warning !== '') {
+      console.log(`${yellow('WARNING')} ${warning}`);
+    }
+  });
+
+  if (pad) console.log();
+}
+
 module.exports = exports = {
   ESCAPE,
   RED,
@@ -53,6 +72,7 @@ module.exports = exports = {
   handleProcessError,
   getSuccessMessage,
   isTTY,
+  printWarnings,
   exitWithError,
   exitSuccess,
 };

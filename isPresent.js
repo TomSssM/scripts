@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { run, exitWithError, blue, getSuccessMessage } = require('./utils');
+const { run, exitWithError, blue, getSuccessMessage, printWarnings } = require('./utils');
 const { readChecksumDbToMap, serializeChecksumMapDb } = require('./utils/checksum');
 const { diff } = require('./utils/map');
 
@@ -27,7 +27,11 @@ const outValue = outArg !== -1 && argv[outArg + 1];
 run(async () => {
     const inDb = await readChecksumDbToMap(inValue);
     const fromDb = await readChecksumDbToMap(fromValue);
-    const [diffMap, correspondsMap] = diff(fromDb, inDb).map((db) => serializeChecksumMapDb(db) || '...empty');
+    const out = diff(fromDb, inDb);
+    const [, , warnings] = out;
+    const [diffMap, correspondsMap] = out.slice(0, 2).map((db) => serializeChecksumMapDb(db) || '...empty');
+
+    printWarnings(warnings);
 
     const msg = `
 

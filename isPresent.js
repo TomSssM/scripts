@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { run, exitWithError, blue, getSuccessMessage, printWarnings } = require('./utils');
+const { run, exitWithError, blue, yellow, getSuccessMessage, printWarnings } = require('./utils');
 const { readChecksumDbToMap, serializeChecksumMapDb } = require('./utils/checksum');
 const { diff } = require('./utils/map');
 
@@ -8,6 +8,16 @@ const argv = process.argv.slice(2);
 const fromArg = argv.indexOf('--from'); // Are checksums from --from ...
 const inArg = argv.indexOf('--in');     // ... present in --in ?
 const outArg = argv.indexOf('--out');
+const shouldHelp = argv.includes('--help');
+
+if (shouldHelp) {
+  console.log();
+  console.log(
+    `${yellow('!')} If renaming, ${blue('--from')} is the ./db/sha1/... and ${blue('--in')} is the old checksums`
+  );
+  console.log();
+  process.exit(0);
+}
 
 if (fromArg === -1 || inArg === -1) {
   exitWithError(

@@ -10,6 +10,10 @@ const green = (value) => [GREEN, value, RESET].join('');
 const blue = (value) => [BLUE, value, RESET].join('');
 const yellow = (value) => [YELLOW, value, RESET].join('');
 
+const [bgRed, bgGreen, bgBlue, bgYellow] = [41, 42, 44, 43]
+  .map((colorIndex) => `${ESCAPE}[${String(colorIndex)}m`)
+  .map((color) => (value) => [color, value, RESET].join(''));
+
 function handleProcessError(error) {
   exitWithError(error.message);
 }
@@ -68,6 +72,11 @@ module.exports = exports = {
   red,
   green,
   blue,
+  yellow,
+  bgRed,
+  bgGreen,
+  bgBlue,
+  bgYellow,
   run,
   handleProcessError,
   getSuccessMessage,

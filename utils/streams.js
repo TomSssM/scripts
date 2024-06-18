@@ -83,6 +83,7 @@ function applyMapper(mapper) {
 }
 
 module.exports = exports = {
+  createReader,
   createSetReader,
   createMapReader,
   serialProcess,

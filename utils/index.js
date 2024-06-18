@@ -3,12 +3,14 @@ const RED = `${ESCAPE}[31m`;
 const GREEN = `${ESCAPE}[32m`;
 const BLUE = `${ESCAPE}[34m`;
 const YELLOW = `${ESCAPE}[33m`;
+const BOLD = `${ESCAPE}[1m`;
 const RESET = `${ESCAPE}[0m`;
 
 const red = (value) => [RED, value, RESET].join('');
 const green = (value) => [GREEN, value, RESET].join('');
 const blue = (value) => [BLUE, value, RESET].join('');
 const yellow = (value) => [YELLOW, value, RESET].join('');
+const bold = (value) => [BOLD, value, RESET].join('');
 
 const [bgRed, bgGreen, bgBlue, bgYellow] = [41, 42, 44, 43]
   .map((colorIndex) => `${ESCAPE}[${String(colorIndex)}m`)
@@ -72,6 +74,7 @@ module.exports = exports = {
   red,
   green,
   blue,
+  bold,
   yellow,
   bgRed,
   bgGreen,

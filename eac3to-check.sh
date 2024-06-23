@@ -15,3 +15,12 @@ for file in *; do
     echo -e "${GREEN}success${RESET}: ${file}"
   fi
 done
+
+if [ $? -ne 0 ]
+then
+  echo -e "${RED}Error${RESET}"
+  exit 1
+else
+  echo
+  echo -e "${GREEN}All Files Are Success!${RESET}"
+fi

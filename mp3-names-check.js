@@ -65,11 +65,16 @@ const info = [];
  * Extracts track name from file name
  *
  * @example
+ * Track Name => Track Name
  * 01. Track Name => Track Name
  * 1-01. Track Name => Track Name
  */
 function getTrackNameFromFileName(fileName) {
   const [, ...parts] = fileName.split(TRACK_NAME_SEPARATOR);
+
+  if (parts.length === 0) {
+    return fileName;
+  }
 
   return parts.join(TRACK_NAME_SEPARATOR);
 }

@@ -5,7 +5,7 @@ YELLOW="${ESCAPE}[0;33m"
 RESET="${ESCAPE}[0m"
 
 for file in *; do
-  'C:\Program Files\eac3to\eac3to.exe' "${file}" -check
+  eac3to "${file}" -check
 
   if [ $? -ne 0 ]
   then

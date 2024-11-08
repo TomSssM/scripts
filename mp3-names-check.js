@@ -10,7 +10,9 @@ if (['--help', '-h', 'help', 'h'].includes(argv[0])) {
 ${blue('running:')} ${bold('node mp3-names-check.js ./mediainfo.txt')}
 
 ${blue('gives you all the mismatches between file names and song names in the form:')}
-    TODO
+    warning: Mismatch:
+    "<track-title>" !== "<file-name>"
+    at "file-path"
   `.trim());
 
   process.exit(0);

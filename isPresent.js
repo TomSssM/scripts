@@ -22,7 +22,7 @@ if (shouldHelp) {
 if (fromArg === -1 || inArg === -1) {
   exitWithError(
     `not enough arguments:
-      Are file checksums from ${blue('--from')} ... present in ${blue('--in')} ... ?
+      Are checksums from ${blue('--from')} ... present in ${blue('--in')} ... ?
     `
   );
 }

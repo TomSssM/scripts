@@ -5,7 +5,7 @@ const { sync } = require('./utils/set');
 
 const argv = process.argv.slice(2);
 
-const fromArg = argv.indexOf('--from'); // Are checksums from --from ...
+const fromArg = argv.indexOf('--from'); // Are files from --from ...
 const inArg = argv.indexOf('--in');     // ... present in --in ?
 const outArg = argv.indexOf('--out');
 const lax = argv.includes('--lax');

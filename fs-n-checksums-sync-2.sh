@@ -31,15 +31,15 @@ echo -n 'Torrentino HD (Novo StreamFab):    ' && cat "${SCRIPT_DIR}/files/torren
 echo -n 'Torrentino HD (HD Ready):          ' && cat "${SCRIPT_DIR}/files/torrentino-hd-ready.txt" | wc -l && \
 echo -n 'Torrentino HD (widescreen rips):   ' && cat "${SCRIPT_DIR}/files/torrentino-hd-wide.txt" | wc -l && \
 echo && \
-echo -n '2-0:                               ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/buffer-2-0.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/buffer-2-0.txt" && \
-echo -n '3-0:                               ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/buffer-3-0.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/buffer-3-0.txt" && \
-echo -n '3-0 (Updates):                     ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/buffer-3-0-updates.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/buffer-3-0-updates.txt" && \
-echo -n 'Storage HD:                        ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/storage-hd.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/storage-hd.txt" && \
-echo -n 'Torrentino 4:                      ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-4.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-4.txt" && \
-echo -n 'Torrentino 5:                      ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-5.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-5.txt" && \
-echo -n 'Torrentino HD:                     ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-hd.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-hd.txt" && \
-echo -n 'Torrentino HD (Cartoonchaos):      ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-hd-cc.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-hd-cc.txt" && \
-echo -n 'Torrentino HD (Novo StreamFab):    ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-hd-fab.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-hd-fab.txt" && \
-echo -n 'Torrentino HD (HD Ready):          ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-hd-ready.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-hd-ready.txt" && \
-echo -n 'Torrentino HD (widescreen rips):   ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-hd-wide.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-hd-wide.txt"
+echo -n '2-0:                               ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/buffer-2-0.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/buffer-2-0.sha1" && \
+echo -n '3-0:                               ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/buffer-3-0.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/buffer-3-0.sha1" && \
+echo -n '3-0 (Updates):                     ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/buffer-3-0-updates.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/buffer-3-0-updates.sha1" && \
+echo -n 'Storage HD:                        ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/storage-hd.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/storage-hd.sha1" && \
+echo -n 'Torrentino 4:                      ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-4.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-4.sha1" && \
+echo -n 'Torrentino 5:                      ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-5.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-5.sha1" && \
+echo -n 'Torrentino HD:                     ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-hd.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-hd.sha1" && \
+echo -n 'Torrentino HD (Cartoonchaos):      ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-hd-cc.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-hd-cc.sha1" && \
+echo -n 'Torrentino HD (Novo StreamFab):    ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-hd-fab.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-hd-fab.sha1" && \
+echo -n 'Torrentino HD (HD Ready):          ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-hd-ready.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-hd-ready.sha1" && \
+echo -n 'Torrentino HD (widescreen rips):   ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/torrentino-hd-wide.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/torrentino-hd-wide.sha1"
 rm -r "${SCRIPT_DIR}/files"

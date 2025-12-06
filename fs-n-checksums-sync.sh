@@ -14,6 +14,14 @@ find './The Storybook' -type f >> "${SCRIPT_DIR}/files/the-storybook.txt" && \
 find './TV' -type f >> "${SCRIPT_DIR}/files/tv.txt" && \
 cd "${SCRIPT_DIR}" && \
 echo && \
+echo -n 'Code:                               ' && cat "${SCRIPT_DIR}/files/code.txt" | wc -l && \
+echo -n 'Data:                               ' && cat "${SCRIPT_DIR}/files/data.txt" | wc -l && \
+echo -n 'Docs:                               ' && cat "${SCRIPT_DIR}/files/docs.txt" | wc -l && \
+echo -n 'My Library:                         ' && cat "${SCRIPT_DIR}/files/my-library.txt" | wc -l && \
+echo -n 'Pictures:                           ' && cat "${SCRIPT_DIR}/files/pictures.txt" | wc -l && \
+echo -n 'The Storybook:                      ' && cat "${SCRIPT_DIR}/files/the-storybook.txt" | wc -l && \
+echo -n 'TV:                                 ' && cat "${SCRIPT_DIR}/files/tv.txt" | wc -l && \
+echo && \
 echo -n 'Code:                               ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/code.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/code.sha1" && \
 echo -n 'Data:                               ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/data.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/data.sha1" && \
 echo -n 'Docs:                               ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/docs.txt" --checksum "${CHECKSUMS_DIR}/db/sha1/docs.sha1" && \

@@ -1,18 +1,21 @@
 # File System and Checksums Sync
 
-Check that the files on the file system and the checksums DB match
+Check that the files on the file system match the Checksums Database:
 
-__Environment Variables:__
-  * `DRIVE` - path to the mounted Drive
-
-## The Holidays
-
+__The Holidays__
 ```shell
 DRIVE='/h' bash ./fs-n-checksums-sync.sh
 ```
 
-## Buffer
-
+__Buffer__
 ```shell
 DRIVE='/h' bash ./fs-n-checksums-sync-2.sh
 ```
+
+## Specification
+
+### Environment Variables
+
+| Name | Description |
+|---|---|
+| `DRIVE` | Path to the mounted Drive |

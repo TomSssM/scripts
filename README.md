@@ -9,12 +9,19 @@
 ## List
 
 * [File System and Checksums Sync](./docs/fs-n-checksums-sync.md)
+* [Find Files for the Checksums Database](./docs/na-kolenke.md)
+* [Sync Checksums Databases](./docs/findfile.md)
+* [Check if one Checksums Database contains another Checksums Database](./docs/isPresent.md)
+* [Check if one File System contains another File System](./docs/cmpFilesDb.md)
+* [Check Video Files](./docs/eac3to-check.md)
+* [Aggregate MediaInfo](./docs/mediainfo-check.md)
+* [Check Track Names of MP3 Files](./docs/mp3-names-check.md)
 
 ## Notes
 
 ### Checksums
 
-Calculate checksum of file `file.txt`:
+Calculate checksum of file `file.txt` and save it into Checksums Database `integrity.sha1`:
 
 ```shell
 shasum -a 1 ./file.txt >> ./integrity.sha1 && echo $?
@@ -22,7 +29,7 @@ shasum -a 1 ./file.txt >> ./integrity.sha1 && echo $?
 
 ---
 
-Calculate checksums of files inside the directory `.`:
+Calculate checksums of files inside the directory `.` and save them into Checksums Database `integrity.sha1`:
 
 ```shell
 find . -type f -exec shasum -a 1 {} \; >> ../integrity.sha1 && echo $?
@@ -30,7 +37,7 @@ find . -type f -exec shasum -a 1 {} \; >> ../integrity.sha1 && echo $?
 
 ---
 
-Verify the checksums:
+Verify the checksums of the Checksums Database `integrity.sha1`:
 
 ```shell
 shasum -c ./integrity.sha1 && echo $?
@@ -68,6 +75,14 @@ Find empty directories inside the directory `.`:
 
 ```shell
 find . -type d -empty
+```
+
+---
+
+Find files inside the directory `.` and save them into File System `files.txt`:
+
+```shell
+find . -type f >> ../files.txt
 ```
 
 ---

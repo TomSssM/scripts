@@ -1,1 +1,7 @@
+# Check Track Names of MP3 Files
+
 Save the MediaInfo in JSON format of multiple MP3 files (e.g. of a directory of MP3 files) into a file `mediainfo.json` and run this script to check that in every MP3 file the song name in the MediaInfo matches the name of the MP3 file:
+
+```shell
+node mp3-names-check.js ./mediainfo.json
+```

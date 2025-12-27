@@ -118,5 +118,3 @@ Forward port `11023` from remote server at IP address `10.0.0.1` (in the example
 ```shell
 sudo iptables -t nat -A PREROUTING -p tcp -d 10.0.0.1 --dport 11023 -j DNAT --to-destination 10.0.0.2:11023
 ```
-
----

@@ -54,5 +54,5 @@ echo -n 'Torrentino HD (Cartoonchaos):                                  ' && nod
 echo -n 'Torrentino HD (HD Ready):                                      ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/files/torrentino-hd-ready.txt" --checksum "${SCRIPT_DIR}/files/checksums/torrentino-hd-ready.sha1" && \
 echo -n 'Torrentino HD (Novo StreamFab):                                ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/files/torrentino-hd-fab.txt" --checksum "${SCRIPT_DIR}/files/checksums/torrentino-hd-fab.sha1" && \
 echo -n 'Torrentino HD (Storage HD):                                    ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/files/torrentino-hd-storage-hd.txt" --checksum "${SCRIPT_DIR}/files/checksums/torrentino-hd-storage-hd.sha1" && \
-echo -n 'Torrentino HD (widescreen rips):                               ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/files/torrentino-hd-wide.txt" --checksum "${SCRIPT_DIR}/files/checksums/torrentino-hd-wide.sha1" && \
+echo -n 'Torrentino HD (widescreen rips):                               ' && node na-kolenke.js --files "${SCRIPT_DIR}/files/files/torrentino-hd-wide.txt" --checksum "${SCRIPT_DIR}/files/checksums/torrentino-hd-wide.sha1"
 rm -r "${SCRIPT_DIR}/files"

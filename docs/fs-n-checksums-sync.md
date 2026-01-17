@@ -1,6 +1,6 @@
 # File System and Checksums Sync
 
-Check that the files on the file system match the Checksums Database:
+Check that the files on the File System match the Checksums Database:
 
 ---
 
@@ -9,7 +9,39 @@ Check that the files on the file system match the Checksums Database:
 DRIVE='/h' bash ./fs-n-checksums-sync.sh
 ```
 
-#### Buffer
+#### Выходные
+
+```shell
+DRIVE='/h' bash ./fs-n-checksums-sync-legacy-stuff.sh
+```
+
+---
+
+#### The Holidays Base
+
+```shell
+DRIVE='/h' bash ./fs-n-checksums-sync-base.sh
+```
+
+---
+
+#### The Holidays DVD
+
+```shell
+DRIVE='/h' bash ./fs-n-checksums-sync-dvd.sh
+```
+
+---
+
+#### The Holidays HD
+
+```shell
+DRIVE='/h' bash ./fs-n-checksums-sync-hd.sh
+```
+
+---
+
+### Buffer
 ```shell
 DRIVE='/h' bash ./fs-n-checksums-sync-2.sh
 ```
@@ -30,38 +62,6 @@ DRIVE='/h' bash ./fs-n-checksums-sync-dvd-2.sh
 
 ```shell
 DRIVE='/h' bash ./fs-n-checksums-sync-hd-2.sh
-```
-
----
-
-### Выходные
-
-```shell
-DRIVE='/h' bash ./fs-n-checksums-sync-legacy-stuff.sh
-```
-
----
-
-### The Holidays Base
-
-```shell
-DRIVE='/h' bash ./fs-n-checksums-sync-base.sh
-```
-
----
-
-### The Holidays DVD
-
-```shell
-DRIVE='/h' bash ./fs-n-checksums-sync-dvd.sh
-```
-
----
-
-### The Holidays HD
-
-```shell
-DRIVE='/h' bash ./fs-n-checksums-sync-hd.sh
 ```
 
 ---

@@ -63,6 +63,14 @@ find . -type f -not -path "./test/*"
 
 ---
 
+Find files inside the directory `.` excluding the directories `test1` and `test2`:
+
+```shell
+find . -type f -not -path "./test1/*" -not -path "./test2/*"
+```
+
+---
+
 Find directories inside the directory `.`:
 
 ```shell
@@ -75,6 +83,14 @@ Find empty directories inside the directory `.`:
 
 ```shell
 find . -type d -empty
+```
+
+---
+
+Find files inside the directory `.` not exceeding the depth of 1:
+
+```shell
+find . -maxdepth 1 -type f
 ```
 
 ---

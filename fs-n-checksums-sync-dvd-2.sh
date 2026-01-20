@@ -1,6 +1,6 @@
 SCRIPT_DIR=$(pwd)
-CHECKSUMS_DIR=$(realpath "${SCRIPT_DIR}/../checksums-2")
-if [ -d "${SCRIPT_DIR}/files" ]; then
+CHECKSUMS_DIR=$(realpath "${SCRIPT_DIR}/../checksums/checksums-2")
+if [[ -d "${SCRIPT_DIR}/files" ]]; then
   rm -r "${SCRIPT_DIR}/files"
 fi
 mkdir "${SCRIPT_DIR}/files" && \

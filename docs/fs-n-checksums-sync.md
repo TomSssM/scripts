@@ -66,6 +66,14 @@ DRIVE='/h' bash ./fs-n-checksums-sync-hd-2.sh
 
 ---
 
+### Toolkit
+
+```shell
+DRIVE='/h' bash ./fs-n-checksums-sync-3.sh
+```
+
+---
+
 ## Specification
 
 ### Environment Variables

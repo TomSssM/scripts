@@ -5,6 +5,7 @@ Check that the files on the File System match the Checksums Database:
 ---
 
 ### The Holidays
+
 ```shell
 DRIVE='/h' bash ./fs-n-checksums-sync.sh
 ```
@@ -42,6 +43,7 @@ DRIVE='/h' bash ./fs-n-checksums-sync-hd.sh
 ---
 
 ### Buffer
+
 ```shell
 DRIVE='/h' bash ./fs-n-checksums-sync-2.sh
 ```
@@ -71,6 +73,8 @@ DRIVE='/h' bash ./fs-n-checksums-sync-hd-2.sh
 ```shell
 DRIVE='/h' bash ./fs-n-checksums-sync-3.sh
 ```
+
+Please note that the Script for __Toolkit__ uses the Checksums Databases located inside __Toolkit__ on `DRIVE` (instead of the Checksums Databases located inside __Toolkit__ from which the Script is run) because __Toolkit__ is where we store Checksums Databases
 
 ---
 

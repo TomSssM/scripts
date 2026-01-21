@@ -9,6 +9,7 @@
 ## List
 
 * [File System and Checksums Sync](./docs/fs-n-checksums-sync.md)
+* [Verify Toolkit Checksums](./docs/verify-toolkit-checksums.md)
 * [Find Files for the Checksums Database](./docs/na-kolenke.md)
 * [Sync Checksums Databases](./docs/findfile.md)
 * [Check if one Checksums Database contains another Checksums Database](./docs/isPresent.md)

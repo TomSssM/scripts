@@ -130,8 +130,8 @@ scp root@88.210.10.205:/root/file.txt .
 
 ---
 
-Forward port `11023` from remote server at IP address `10.0.0.1` (in the example it is server private VPN IP address) to another server at IP address `10.0.0.2` (in the example it is client private VPN IP address), execute on the server from which the port should be forwarded (in the example it is server at IP address `10.0.0.1`):
+Forward port `11023` from remote server at IP address `88.210.10.205` (in the example it is server public white IP address) to another server at IP address `10.0.0.2` (in the example it is client private VPN IP address), execute on the server from which the port should be forwarded (in the example it is server at IP address `88.210.10.205`):
 
 ```shell
-sudo iptables -t nat -A PREROUTING -p tcp -d 10.0.0.1 --dport 11023 -j DNAT --to-destination 10.0.0.2:11023
+sudo iptables -t nat -A PREROUTING -p tcp -d 88.210.10.205 --dport 11023 -j DNAT --to-destination 10.0.0.2:11023
 ```

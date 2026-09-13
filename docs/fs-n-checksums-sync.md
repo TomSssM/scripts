@@ -42,10 +42,24 @@ DRIVE='/h' bash ./fs-n-checksums-sync-hd.sh
 
 ---
 
+#### The Holidays TV
+
+```shell
+DRIVE='/h' bash ./fs-n-checksums-sync-tv.sh
+```
+
+---
+
 ### Buffer
 
 ```shell
 DRIVE='/h' bash ./fs-n-checksums-sync-2.sh
+```
+
+#### Buffer (Выходные)
+
+```shell
+DRIVE='/h' bash ./fs-n-checksums-sync-legacy-stuff-2.sh
 ```
 
 #### Buffer (The Holidays Base)
@@ -64,6 +78,12 @@ DRIVE='/h' bash ./fs-n-checksums-sync-dvd-2.sh
 
 ```shell
 DRIVE='/h' bash ./fs-n-checksums-sync-hd-2.sh
+```
+
+#### Buffer (The Holidays TV)
+
+```shell
+DRIVE='/h' bash ./fs-n-checksums-sync-tv-2.sh
 ```
 
 ---
